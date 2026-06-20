@@ -1,16 +1,23 @@
 import Appname from "./components/Appname"
 import Addtodo from "./components/Addtodo"
-import Todoitem1  from "./components/Todoitem1"
-import Todoitem2 from "./components/Todoitem2"
+import Items from "./components/Items";
 function App() {
+  let todoitems=[
+    {
+      name:'1st Task',
+      date:'20/06/2026',
+    },
+    {
+      name:'2nd Task',
+      date:'25/06/2026',
+    }
+  ];
+
   return (
     <center className='todo_container'>
       <Appname />
       <Addtodo />
-      <div className="items_container">
-        <Todoitem1 />
-        <Todoitem2 />
-      </div>
+      <Items items={todoitems}></Items>
     </center>
   )
 }
