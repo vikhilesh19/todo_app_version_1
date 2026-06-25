@@ -1,8 +1,8 @@
 import Todoitem from "./Todoitem";
-function Items({items}){
+function Items({items,handledelete}){
     return (
         <div className="items_container">
-            {items.map(item=><Todoitem todoname={item.name} tododate={item.date}></Todoitem>)}
+            {items.map(item=><Todoitem todoname={item.name} tododate={item.date} handledelete={handledelete}></Todoitem>)}
       </div>
     )
 }

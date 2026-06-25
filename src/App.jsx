@@ -1,23 +1,37 @@
 import Appname from "./components/Appname"
 import Addtodo from "./components/Addtodo"
 import Items from "./components/Items";
+import { useState } from "react";
+import Welcomemsg from "./components/Welcomemsg";
+
 function App() {
-  let todoitems=[
-    {
-      name:'1st Task',
-      date:'20/06/2026',
-    },
-    {
-      name:'2nd Task',
-      date:'25/06/2026',
+  let [todoitems,settodoitems]=useState([])
+
+  const handleadd=(itemname,itemdate)=>{
+    if(itemname && itemdate){
+      let newtodoitems=[...todoitems,
+      {
+        name:itemname,
+        date:itemdate,
+      }]
+      settodoitems(newtodoitems);
     }
-  ];
+    else{
+      alert('Enter Both Todo and date');
+    }
+  }
+
+  const handledelete=(itemname)=>{
+    let newtodoitems=todoitems.filter(item=>item.name!==itemname);
+    settodoitems(newtodoitems);
+  }
 
   return (
     <center className='todo_container'>
       <Appname />
-      <Addtodo />
-      <Items items={todoitems}></Items>
+      <Addtodo handleadd={handleadd} />
+      <Welcomemsg items={todoitems}/>
+      <Items items={todoitems} handledelete={handledelete}></Items>
     </center>
   )
 }
