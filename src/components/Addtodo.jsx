@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { IoMdAddCircle } from "react-icons/io";
+import { TodoItemsContext } from "../store/todo_items_store";
 
-function Addtodo({handleadd})
+function Addtodo()
 {
+  const contextobj=useContext(TodoItemsContext);
+  const handleadd=contextobj.handleadd;
   let [todo,settodo]=useState();
   let [duedate,setduedate]=useState();
 

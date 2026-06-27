@@ -3,6 +3,7 @@ import Addtodo from "./components/Addtodo"
 import Items from "./components/Items";
 import { useState } from "react";
 import Welcomemsg from "./components/Welcomemsg";
+import { TodoItemsContext } from "./store/todo_items_store";
 
 function App() {
   let [todoitems,settodoitems]=useState([])
@@ -27,12 +28,18 @@ function App() {
   }
 
   return (
-    <center className='todo_container'>
-      <Appname />
-      <Addtodo handleadd={handleadd} />
-      <Welcomemsg items={todoitems}/>
-      <Items items={todoitems} handledelete={handledelete}></Items>
-    </center>
+    <TodoItemsContext.Provider value={{
+      items:todoitems,
+      handleadd:handleadd,
+      handledelete:handledelete,
+    }}>
+      <center className='todo_container'>
+        <Appname />
+        <Addtodo />
+        <Welcomemsg />
+        <Items></Items>
+      </center>
+    </TodoItemsContext.Provider>
   )
 }
 export default App
